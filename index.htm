@@ -3,14 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>数学练习题</title>
+</head>
+
+<body>
+<div id="options">
+运算: <select onchange="changeOperator(this)">
+  <option value="+">加法</option>
+  <option value="-">减法</option>
+  <option value="+-">加减混合</option>
+  <option value="*">乘法</option>
+</select>
+&nbsp;&nbsp;
+范围: <select onchange="changeScope(this)">
+  <option value="1-10">1-10</option>
+  <option value="10-20">10-20</option>
+  <option value="20-100">20-100</option>
+  <option value="100-500">100-500</option>
+  <option value="500-1000">500-1000</option>
+  <option value="1000-10000">1000-10000</option>
+  <option value="10000-50000" selected="selected">10000-50000</option>
+</select>
+</div>
+<br/>
+<div id="equation"></div>
+<div><span id="counterSpan">第1题</span><input type="button" id="nextBtn" value="看答案" onClick="next(this)"></input>
+</div>
+
 <style>
 body{TEXT-ALIGN: center;}
 #options{ 
-font-size:30px;
-margin-top:30px;
+font-size:40px;
+margin-top:40px;
 }
 #options select{ 
-font-size:25px;
+font-size:36px;
 }
 #equation{ 
 font-size:120px;
@@ -29,31 +55,6 @@ height:100px;
 font-size:60px;
 }
 </style>
-</head>
-
-<body>
-<div id="options">
-运算 <select onchange="changeOperator(this)">
-  <option value="+">加法</option>
-  <option value="-">减法</option>
-  <option value="+-">加减混合</option>
-  <option value="*">乘法</option>
-</select>
-&nbsp;&nbsp;
-范围 <select onchange="changeScope(this)">
-  <option value="1-10">1-10</option>
-  <option value="10-20">10-20</option>
-  <option value="20-100">20-100</option>
-  <option value="100-500">100-500</option>
-  <option value="500-1000">500-1000</option>
-  <option value="1000-10000">1000-10000</option>
-  <option value="10000-50000" selected="selected">10000-50000</option>
-</select>
-</div>
-<div id="equation"></div>
-<div><span id="counterSpan">第1题</span><input type="button" id="nextBtn" value="看答案" onClick="next(this)"></input>
-</div>
-
 
 <script type="text/javascript">
 
