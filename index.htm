@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
-<title>ÊıÑ§Á·Ï°Ìâ</title>
+<meta charset="UTF-8">
+<title>æ•°å­¦ç»ƒä¹ é¢˜</title>
 <style>
 body{TEXT-ALIGN: center;}
 #options{ 
@@ -33,14 +33,14 @@ font-size:60px;
 
 <body>
 <div id="options">
-ÔËËã <select onchange="changeOperator(this)">
-  <option value="+">¼Ó·¨</option>
-  <option value="-">¼õ·¨</option>
-  <option value="+-">¼Ó¼õ»ìºÏ</option>
-  <option value="*">³Ë·¨</option>
+è¿ç®— <select onchange="changeOperator(this)">
+  <option value="+">åŠ æ³•</option>
+  <option value="-">å‡æ³•</option>
+  <option value="+-">åŠ å‡æ··åˆ</option>
+  <option value="*">ä¹˜æ³•</option>
 </select>
 &nbsp;&nbsp;
-·¶Î§ <select onchange="changeScope(this)">
+èŒƒå›´ <select onchange="changeScope(this)">
   <option value="1-10">1-10</option>
   <option value="10-20">10-20</option>
   <option value="20-100">20-100</option>
@@ -51,7 +51,7 @@ font-size:60px;
 </select>
 </div>
 <div id="equation"></div>
-<div><span id="counterSpan">µÚ1Ìâ</span><input type="button" id="nextBtn" value="¿´´ğ°¸" onClick="next(this)"></input>
+<div><span id="counterSpan">ç¬¬1é¢˜</span><input type="button" id="nextBtn" value="çœ‹ç­”æ¡ˆ" onClick="next(this)"></input>
 </div>
 
 
@@ -136,7 +136,7 @@ function genEquation(operator,scopeMin,scopeMax)
 
 	if(operator == "*")
 	{
-		equation.innerText = num1 + " ¡Á " + num2 + " =";
+		equation.innerText = num1 + " Ã— " + num2 + " =";
 	}
 	else
 	{
@@ -149,17 +149,17 @@ function genEquation(operator,scopeMin,scopeMax)
 function next(obj)
 {
 	//alert(obj.value);
-	if (obj.value == "¿´´ğ°¸")
+	if (obj.value == "çœ‹ç­”æ¡ˆ")
 	{
 		equation.innerText = equation.innerText + " " + result;
-		obj.value = "ÏÂÒ»Ìâ";
+		obj.value = "ä¸‹ä¸€é¢˜";
 	}
 	else
 	{
 		genEquation(getOperator(selectedOperator),selectedScopeMin,selectedScopeMax);
 		counter ++;
-		counterSpan.innerText = "µÚ" + counter + "Ìâ";
-		obj.value = "¿´´ğ°¸";
+		counterSpan.innerText = "ç¬¬" + counter + "é¢˜";
+		obj.value = "çœ‹ç­”æ¡ˆ";
 	}
 
 }
