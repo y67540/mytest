@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GB2312">
+<title>数学练习题</title>
+<style>
+body{TEXT-ALIGN: center;}
+#options{ 
+font-size:30px;
+margin-top:30px;
+}
+#options select{ 
+font-size:25px;
+}
+#equation{ 
+font-size:120px;
+margin-top:70px;
+margin-bottom:70px;
+}
+#counterSpan{ 
+width:300px;
+height:100px;
+font-size:60px;
+margin-right:50px;
+}
+#nextBtn{ 
+width:280px;
+height:100px;
+font-size:60px;
+}
+</style>
+</head>
+
+<body>
+<div id="options">
+运算 <select onchange="changeOperator(this)">
+  <option value="+">加法</option>
+  <option value="-">减法</option>
+  <option value="+-">加减混合</option>
+  <option value="*">乘法</option>
+</select>
+&nbsp;&nbsp;
+范围 <select onchange="changeScope(this)">
+  <option value="1-10">1-10</option>
+  <option value="10-20">10-20</option>
+  <option value="20-100">20-100</option>
+  <option value="100-500">100-500</option>
+  <option value="500-1000">500-1000</option>
+  <option value="1000-10000">1000-10000</option>
+  <option value="10000-50000" selected="selected">10000-50000</option>
+</select>
+</div>
+<div id="equation"></div>
+<div><span id="counterSpan">第1题</span><input type="button" id="nextBtn" value="看答案" onClick="next(this)"></input>
+</div>
+
+
+<script type="text/javascript">
+
+var operater1 = "+";
+var operater2 = "-";
+var operater3 = "+-";
+var operater4 = "x";
+var operater5 = "/";
+var operater6 = "x/";
+var result;
+
+var selectedScopeMin = 10000;
+var selectedScopeMax = 50000;
+var selectedOperator = "+";
+var counter = 1;
+
+var equation = document.getElementById("equation");
+var counterSpan = document.getElementById("counterSpan");
+
+function getOperator(operator)
+{
+	var newOperator = selectedOperator;
+
+	if (operator == "+-")
+	{
+		if(Math.random() > 0.5)
+		{
+			newOperator = "+";
+		}
+		else
+		{
+			newOperator = "-";
+		}
+		
+	}
+	else
+	{
+		newOperator = operator;
+	}
+
+	return newOperator;
+
+}
+
+function genEquation(operator,scopeMin,scopeMax)
+{
+	if (scopeMin > 9999)
+	{
+		equation.style.fontSize = "85px";
+		//equation.style.marginTop = "50px";
+		//equation.style.marginBottom = "50px";
+	}
+	else if(scopeMin > 999)
+	{
+		equation.style.fontSize = "100px";
+		//equation.style.marginTop = "30px";
+		//equation.style.marginBottom = "30px";
+	}
+	else
+	{
+		equation.style.fontSize = "120px";
+		//equation.style.marginTop = "70px";
+		//equation.style.marginBottom = "70px";
+	}
+
+	var num1 = Math.round(Math.random()*scopeMax); 
+	var num2 = Math.round(Math.random()*scopeMax);
+
+	if (num1 < scopeMin)
+	{
+		 num1 += parseInt(scopeMin);
+	}
+	if (num2 < scopeMin)
+	{
+		 num2 += parseInt(scopeMin);
+	}
+
+	result = eval(num1 + operator + num2);
+	//alert(result);
+
+	if(operator == "*")
+	{
+		equation.innerText = num1 + " × " + num2 + " =";
+	}
+	else
+	{
+		equation.innerText = num1 + " " + operator + " " + num2 + " =";
+	}
+	
+
+}
+
+function next(obj)
+{
+	//alert(obj.value);
+	if (obj.value == "看答案")
+	{
+		equation.innerText = equation.innerText + " " + result;
+		obj.value = "下一题";
+	}
+	else
+	{
+		genEquation(getOperator(selectedOperator),selectedScopeMin,selectedScopeMax);
+		counter ++;
+		counterSpan.innerText = "第" + counter + "题";
+		obj.value = "看答案";
+	}
+
+}
+
+function changeScope(obj)
+{
+	//alert(obj.value);
+	//selectedScope = obj.value;
+	var scope = obj.value.split("-");
+	selectedScopeMin = scope[0];
+	selectedScopeMax = scope[1];
+}
+
+function changeOperator(obj)
+{
+	//alert(obj.value);
+	//getOperator(obj.value);
+	selectedOperator = obj.value;	
+}
+
+
+genEquation(selectedOperator,selectedScopeMin,selectedScopeMax);
+
+
+</script>
+
+</body>
+</html>
